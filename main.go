@@ -1,18 +1,14 @@
 package main
 
 import (
-	"log"
+	"github.com/rwuniard/go_rest_gin/init"
 
 	"github.com/gin-gonic/gin"
-	"github.com/joho/godotenv"
 )
 
 func init() {
 	// Loading .env file
-	err := godotenv.Load()
-	if err != nil {
-		log.Fatal("Error loading .env file")
-	}
+	init.LoadEnvVar()
 }
 
 func main() {
