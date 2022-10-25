@@ -1,5 +1,11 @@
 # go_rest_gin
 
+## Running the code
+You can run with this on the command line after the dependencies are setup.<br/>
+It will re-compile/run it if there is any code changes.<br/>
+CompileDaemon -command="./go_rest_gin"<br/>
+<br/>
+## Setting up the dependencies
 ### Use Compile Daemon 
 Watches your go files in a directory and invokes go build if file changed.<br/>  
 Github location:<br/>
