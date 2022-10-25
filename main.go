@@ -1,14 +1,14 @@
 package main
 
 import (
-	"github.com/rwuniard/go_rest_gin/init"
+	"go_rest_gin/initializer"
 
 	"github.com/gin-gonic/gin"
 )
 
 func init() {
 	// Loading .env file
-	init.LoadEnvVar()
+	initializer.LoadEnvVar()
 }
 
 func main() {
