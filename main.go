@@ -19,6 +19,6 @@ func main() {
 	r := gin.Default()
 
 	r.POST("/posts", controllers.CreateMessage)
-
+	r.GET("/posts/:title", controllers.GetMessagebyTitle)
 	r.Run()
 }
