@@ -9,6 +9,9 @@ import (
 func init() {
 	// Loading .env file
 	initializer.LoadEnvVar()
+
+	// Load DB connection
+	initializer.ConnectPostgres()
 }
 
 func main() {
