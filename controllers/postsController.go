@@ -3,6 +3,7 @@ package controllers
 import (
 	"go_rest_gin/initializer"
 	"go_rest_gin/models"
+	"net/http"
 
 	"log"
 
@@ -67,7 +68,7 @@ func UpdateMessage(c *gin.Context) {
 	}
 
 	// Return the result.
-	c.IndentedJSON(200, gin.H{
+	c.IndentedJSON(http.StatusOK, gin.H{
 		"updated": orig_post,
 	})
 }
@@ -78,9 +79,11 @@ func DeleteMessage(c *gin.Context) {
 	// Delete from the database -> Actually it will only marked the deleted at column
 	result := initializer.DB.Delete(&models.Post{}, id)
 	if result.Error != nil {
-		c.Status(400)
+		c.Status(http.StatusNotFound)
+
 		return
 	}
+	log.Println("Row affected:", result.RowsAffected)
 	// Respond
 	c.JSON(200, gin.H{
 		"post": "success",
