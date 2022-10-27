@@ -20,5 +20,7 @@ func main() {
 
 	r.POST("/posts", controllers.CreateMessage)
 	r.GET("/posts/:title", controllers.GetMessagebyTitle)
+	r.PUT("/posts/:id", controllers.UpdateMessage)
+	r.DELETE("/posts/:id", controllers.DeleteMessage)
 	r.Run()
 }

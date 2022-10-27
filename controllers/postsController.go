@@ -48,3 +48,41 @@ func GetMessagebyTitle(c *gin.Context) {
 		"post": posts,
 	})
 }
+
+func UpdateMessage(c *gin.Context) {
+	// Get the value from request body and the id from the URL params
+	var post models.Post
+	id := c.Param("id")
+	c.Bind(&post)
+
+	// Get the original data from DB based on the id specified in the URL param
+	var orig_post models.Post
+	initializer.DB.First(&orig_post, id)
+
+	// This will pass the orig_post and will be updated with the new value specified in post object.
+	result := initializer.DB.Model(&orig_post).Updates(&post)
+	if result.Error != nil {
+		c.Status(400)
+		return
+	}
+
+	// Return the result.
+	c.IndentedJSON(200, gin.H{
+		"updated": orig_post,
+	})
+}
+
+func DeleteMessage(c *gin.Context) {
+	id := c.Param("id")
+
+	// Delete from the database -> Actually it will only marked the deleted at column
+	result := initializer.DB.Delete(&models.Post{}, id)
+	if result.Error != nil {
+		c.Status(400)
+		return
+	}
+	// Respond
+	c.JSON(200, gin.H{
+		"post": "success",
+	})
+}
